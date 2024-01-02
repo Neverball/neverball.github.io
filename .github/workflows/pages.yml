@@ -33,8 +33,9 @@ jobs:
           path: neverball
       - name: Build base SOLs
         run: |
-          sudo apt-get install libpng-dev libjpeg-dev && \
-          (cd neverball && make -j2 sols)          
+          sudo apt-get update
+          sudo apt-get install libpng-dev libjpeg-dev
+          (cd neverball && make -j2 sols)
       - name: Build gl4es
         run: "./neverball/.devcontainer/install-gl4es.sh"
       - name: Build web version
