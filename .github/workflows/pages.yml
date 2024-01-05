@@ -43,6 +43,7 @@ jobs:
         uses: actions/cache@v3.3.2
         with:
           path: "/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten"
+          key: "emscripten-libs"
       - name: Build web version
         run: "(cd ./neverball && make -j2 -f emscripten/ball.mk BUILD=release)"
       - name: Upload build artifact
