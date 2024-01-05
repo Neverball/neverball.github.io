@@ -39,11 +39,6 @@ jobs:
           (cd neverball && make -j2 sols)
       - name: Build gl4es
         run: "./neverball/.devcontainer/install-gl4es.sh"
-      - name: Cache/restore Emscripten libs
-        uses: actions/cache@v3.3.2
-        with:
-          path: "/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten"
-          key: "emscripten-libs"
       - name: Build web version
         run: "(cd ./neverball && make -j2 -f emscripten/ball.mk BUILD=release)"
       - name: Upload build artifact
