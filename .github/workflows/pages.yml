@@ -40,6 +40,7 @@ jobs:
       - name: Build gl4es
         run: "./neverball/.devcontainer/install-gl4es.sh"
       - name: Cache/restore Emscripten libs
+        uses: actions/cache@v3.3.2
         with:
           path: "/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten"
       - name: Build web version
