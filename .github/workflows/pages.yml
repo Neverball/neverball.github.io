@@ -42,7 +42,8 @@ jobs:
       - name: Build web version
         run: "(cd ./neverball && make -j2 -f emscripten/ball.mk BUILD=release)"
       - name: "Create source archive"
-        run: "(cd ./neverball && hash=\"$(git rev-parse HEAD)\" git archive --prefix=neverball-${hash}/ --output=js/neverball-${hash}.zip HEAD)"
+        run: |
+          (cd ./neverball && HASH="$(git rev-parse HEAD)" git archive --prefix=neverball-$HASH/ --output=js/neverball-$HASH.zip $HASH)
       - name: Upload build artifact
         uses: actions/upload-artifact@v4.0.0
         with:
