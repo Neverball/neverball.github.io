@@ -46,8 +46,8 @@ jobs:
       - name: "Create source archive"
         run: |
           cd neverball
-          NEVERBALL_COMMIT=$(git rev-parse HEAD)
-          git archive --prefix=neverball-source/ --add-virtual-file=neverball-commit.txt:$NEVERBALL_COMMIT --output=js/neverball-source.zip HEAD
+          git rev-parse HEAD > neverball-commit.txt
+          git archive --prefix=neverball-source/ --add-file=neverball-commit.txt --output=js/neverball-source.zip HEAD
       - name: Upload build artifact
         uses: actions/upload-artifact@v4.0.0
         with:
