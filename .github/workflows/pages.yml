@@ -33,7 +33,7 @@ jobs:
           repository: Neverball/neverball
           path: neverball
       - run: |
-          cd neverball && echo $(git rev-parse HEAD)
+          cd neverball && echo NEVERBALL_COMMIT=$(git rev-parse HEAD) >> "$GITHUB_ENV"
       - name: Build base SOLs
         run: |
           sudo apt-get update
@@ -45,7 +45,10 @@ jobs:
         run: "(cd ./neverball && make -j2 -f emscripten/ball.mk BUILD=release)"
       - name: "Create source archive"
         run: |
-          (cd ./neverball && git archive --prefix=neverball-source/ --output=js/neverball-source.zip HEAD)
+          cd neverball
+          NEVERBALL_COMMIT=$(git rev-parse HEAD)
+          git archive --prefix=neverball-source-$NEVERBALL_COMMIT/ --output=js/neverball-source-$NEVERBALL_COMMIT.zip HEAD
+          sed -i "s,neverball-source,neverball-source-$NEVERBALL_COMMIT,g" js/index.html
       - name: Upload build artifact
         uses: actions/upload-artifact@v4.0.0
         with:
