@@ -32,6 +32,8 @@ jobs:
         with:
           repository: Neverball/neverball
           path: neverball
+          run: |
+            cd neverball && echo $(git rev-parse HEAD)
       - name: Build base SOLs
         run: |
           sudo apt-get update
