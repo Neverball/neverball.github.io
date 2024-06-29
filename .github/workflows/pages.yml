@@ -50,7 +50,7 @@ jobs:
           git archive --prefix=neverball-source/ --add-file=neverball-commit.txt --output=js/neverball-source.zip HEAD
       - name: "Google verification"
         run: |
-          echo "${{ secrets.GOOGLE_VERIFICATION_TEXT }}" > "./neverball/js/${{ secrets.GOOGLE_VERIFICATION_FILE }}"
+          echo "${{ secrets.GOOGLE_VERIFY_TEXT }}" > "./neverball/js/${{ secrets.GOOGLE_VERIFY_FILE }}"
       - name: Upload build artifact
         uses: actions/upload-artifact@v4.0.0
         with:
