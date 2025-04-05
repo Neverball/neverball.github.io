@@ -42,7 +42,9 @@ jobs:
       - name: Build gl4es
         run: "./neverball/.devcontainer/install-gl4es.sh"
       - name: Build web version
-        run: "(cd ./neverball && make -j2 -f emscripten/ball.mk BUILD=release)"
+        run: |
+          sudo apt-get install -y ffmpeg
+          (cd ./neverball && make -j2 -f emscripten/ball.mk BUILD=release)
       - name: "Create source archive"
         run: |
           cd neverball
