@@ -37,7 +37,7 @@ jobs:
       - name: Build base SOLs
         run: |
           sudo apt-get update
-          sudo apt-get install -y libpng-dev libjpeg-dev
+          sudo apt-get install -y libpng-dev libjpeg-dev pkg-config libsdl2-dev libcurl4-openssl-dev
           (cd neverball && make -j2 sols)
       - name: Build gl4es
         run: "./neverball/.devcontainer/install-gl4es.sh"
